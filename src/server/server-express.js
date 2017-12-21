@@ -8,12 +8,13 @@ const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
 const Gun = require("gun");
+require("./vendors/gun-level");
+
 const app = express();
 const levelup = require("levelup");
 const leveldown = require("leveldown");
 
-require("gun-level");
-const levelDB = levelup("./data/keys-data/", {
+const levelDB = levelup("data/keys-data", {
   db: leveldown
 });
 

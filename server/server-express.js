@@ -5,12 +5,13 @@ var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
 var Gun = require("gun");
+require("./vendors/gun-level");
+
 var app = express();
 var levelup = require("levelup");
 var leveldown = require("leveldown");
 
-require("gun-level");
-var levelDB = levelup("./data/keys-data/", {
+var levelDB = levelup("data/keys-data", {
   db: leveldown
 });
 

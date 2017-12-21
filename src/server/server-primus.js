@@ -16,7 +16,7 @@ const bodyParser = require("body-parser"),
   leveldown = require("leveldown"),
   Primus = require("primus");
 
-require("gun-level");
+require("./vendors/gun-level");
 
 const levelDB = levelup("./data/keys-data/", {
   db: leveldown

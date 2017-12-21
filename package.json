@@ -26,9 +26,9 @@
     "link:data": "mkdir -p data",
     "start": "npm run start:server:cluster",
     "start:client": "cd public",
-    "start:server": "node server/server.js",
+    "start:server": "node server/server-gun.js",
     "start:server:cluster": "node server/cluster.js",
-    "start:server:mem": "node server/server-mem.js",
+    "start:server:level": "node server/server-levelhyper.js",
     "test": "cd tests;node client.js"
   },
   "dependencies": {
@@ -37,6 +37,7 @@
     "cluster": "0.7.7",
     "dotenv": "4.0.0",
     "express": "4.16.2",
+    "express-http-proxy": "^1.1.0",
     "gun": "0.9.4",
     "jwt-simple": "0.5.1",
     "level-hyper": "1.2.2",

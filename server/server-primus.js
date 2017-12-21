@@ -12,7 +12,7 @@ var bodyParser = require("body-parser"),
     leveldown = require("leveldown"),
     Primus = require("primus");
 
-require("gun-level");
+require("./vendors/gun-level");
 
 var levelDB = levelup("./data/keys-data/", {
   db: leveldown

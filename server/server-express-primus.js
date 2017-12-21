@@ -14,7 +14,7 @@ require("dotenv").config();
 
 var authorize = require("./authorize");
 
-require("gun-level");
+require("./vendors/gun-level");
 var levelDB = levelHyper("data/memory01-db-data");
 
 // levelDB.on('ready', function () {
