@@ -23,7 +23,6 @@ app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 
 app.use("*", (req, res) => api(req, res));
 
-const VERSION = "0.0.4";
 const port =
   process.env.OPENSHIFT_NODEJS_PORT ||
   process.env.VCAP_APP_PORT ||
@@ -34,10 +33,7 @@ const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
 var server = app.listen(port);
 
-console.log(
-  "[" + VERSION + "]",
-  "Server started on port " + port + " with memory"
-);
+console.log("Server started on port " + port + " with memory");
 
 const gunPeers = [
   "https://tropospheric.mybluemix.net/gun",
@@ -49,7 +45,6 @@ const gunPeers = [
 
 var gun = Gun({
   web: server,
-  file: false,
   s3: s3options,
   peers: gunPeers
 });
@@ -65,9 +60,9 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-// var primusOptions = { iknowclusterwillbreakconnections: true };
-// var primus = new Primus(server, primusOptions);
-var primus = new Primus(server);
+var primusOptions = { iknowclusterwillbreakconnections: true };
+var primus = new Primus(server, primusOptions);
+// var primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
 //

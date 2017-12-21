@@ -1,22 +1,39 @@
 "use strict";
 
+var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.argv[2] || 8080;
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
 var Gun = require("gun");
 var app = express();
+var levelup = require("levelup");
+var leveldown = require("leveldown");
+var levelHyper = require("level-hyper");
 var Primus = require("primus");
-
 require("dotenv").config();
-Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-var s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {};
+require("./vendors/gun-level/index");
+var levelDB = levelHyper("data/tropospheric-data");
 
-var api_require = require("./serverapi/index"),
-    api = api_require.api;
+// levelDB.on('ready', function () {
+//   var name = String(Date.now())
+//   levelDB.db.liveBackup(name, function (err) {
+//     if (!err) console.log('backup to %s was successful', name)
+//   })
+// });
 
+// const levelDB = levelup("data/www-db-data", {
+//   db: leveldown
+// });
+
+var _require = require("./serverapi/index"),
+    api = _require.api;
+
+var s3options = JSON.parse(JSON.stringify(process.env.s3options));
+// const gunPeers = ['https://memory01.usertoken.com/gun', 'https://memory01.pointlook.com/gun'];
+var gunPeers = ["https://tropospheric.mybluemix.net/gun"];
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -24,20 +41,20 @@ app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 app.use("*", function (req, res) {
   return api(req, res);
 });
-
-var VERSION = "0.0.4";
-var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.argv[2] || 8080;
-var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
-
 var server = app.listen(port);
 
-console.log("[" + VERSION + "]", "Server started on port " + port + " with memory");
+console.log("Server started on port " + port + " with /gun");
 
-var gunPeers = ["https://tropospheric.mybluemix.net/gun", "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
-
+// var gun = Gun({
+//   level: levelDB,
+//   file: false,
+//   web: server,
+//   s3: s3Options
+// });
 var gun = Gun({
-  web: server,
+  level: levelDB,
   file: false,
+  web: server,
   s3: s3options,
   peers: gunPeers
 });
@@ -53,8 +70,8 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-// var primusOptions = { iknowclusterwillbreakconnections: true };
-// var primus = new Primus(server, primusOptions);
+// const primusOptions = { iknowclusterwillbreakconnections: true };
+// const primus = new Primus(server, primusOptions);
 var primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
@@ -118,4 +135,3 @@ primus.on("connection", function connection(spark) {
 
   return;
 });
-module.exports = server;

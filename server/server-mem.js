@@ -25,19 +25,17 @@ app.use("*", function (req, res) {
   return api(req, res);
 });
 
-var VERSION = "0.0.4";
 var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.argv[2] || 8080;
 var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
 var server = app.listen(port);
 
-console.log("[" + VERSION + "]", "Server started on port " + port + " with memory");
+console.log("Server started on port " + port + " with memory");
 
 var gunPeers = ["https://tropospheric.mybluemix.net/gun", "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
 
 var gun = Gun({
   web: server,
-  file: false,
   s3: s3options,
   peers: gunPeers
 });
@@ -53,9 +51,9 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-// var primusOptions = { iknowclusterwillbreakconnections: true };
-// var primus = new Primus(server, primusOptions);
-var primus = new Primus(server);
+var primusOptions = { iknowclusterwillbreakconnections: true };
+var primus = new Primus(server, primusOptions);
+// var primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
 //

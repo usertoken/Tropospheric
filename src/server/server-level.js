@@ -1,23 +1,24 @@
-import { peerMemories } from "../configs/memories";
-
-var express = require("express");
-var path = require("path");
-var favicon = require("serve-favicon");
-var Gun = require("gun");
-var app = express();
-var levelup = require("levelup");
-var leveldown = require("leveldown");
-var levelHyper = require("level-hyper");
-var Primus = require("primus");
-var gunlevel = require("./vendors/gun-level");
-
+const port =
+  process.env.OPENSHIFT_NODEJS_PORT ||
+  process.env.VCAP_APP_PORT ||
+  process.env.PORT ||
+  process.argv[2] ||
+  8080;
+const express = require("express");
+const path = require("path");
+const favicon = require("serve-favicon");
+const Gun = require("gun");
+const app = express();
+const levelup = require("levelup");
+const leveldown = require("leveldown");
+const levelHyper = require("level-hyper");
+const Primus = require("primus");
 require("dotenv").config();
-Object.assign = require("object-assign");
 
-var authorize = require("./authorize");
+const authorize = require("./authorize");
 
-var levelDB = levelHyper("data/troposheric-ut-data");
-gunlevel();
+require("./vendors/gun-level/index");
+const levelDB = levelHyper("data/tropospheric-data");
 
 // levelDB.on('ready', function () {
 //   var name = String(Date.now())
@@ -26,46 +27,29 @@ gunlevel();
 //   })
 // });
 
-// var levelDB = levelup("data/www-db-data", {
+// const levelDB = levelup("data/www-db-data", {
 //   db: leveldown
 // });
-// console.log('process.env : ', process.env);
 
-var s3options = process.env.s3options
-  ? JSON.parse(JSON.stringify(process.env.s3options))
-  : {};
-
-var api_require = require("./serverapi/index"),
-  api = api_require.api;
-
+const { api } = require("./serverapi/index");
+const s3options = JSON.parse(JSON.stringify(process.env.s3options));
+// const gunPeers = ['https://memory01.usertoken.com/gun', 'https://memory01.pointlook.com/gun'];
+const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 
 app.use("*", (req, res) => api(req, res));
-
-const VERSION = "0.0.4";
-const port =
-  process.env.OPENSHIFT_NODEJS_PORT ||
-  process.env.VCAP_APP_PORT ||
-  process.env.PORT ||
-  process.argv[2] ||
-  8080;
-const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
-
 var server = app.listen(port);
 
-console.log(
-  "[" + VERSION + "]",
-  "Server started on port " + port + " with memory"
-);
-var gunPeers = peerMemories;
-// var gun = Gun({
-//   web: server,
-//   s3: s3options,
-//   peers: gunPeers
-// });
+console.log("Server started on port " + port + " with /gun");
 
+// var gun = Gun({
+//   level: levelDB,
+//   file: false,
+//   web: server,
+//   s3: s3Options
+// });
 var gun = Gun({
   level: levelDB,
   file: false,
@@ -85,9 +69,9 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-// var primusOptions = { iknowclusterwillbreakconnections: true };
-// var primus = new Primus(server, primusOptions);
-var primus = new Primus(server);
+// const primusOptions = { iknowclusterwillbreakconnections: true };
+// const primus = new Primus(server, primusOptions);
+const primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
 //
@@ -101,7 +85,7 @@ primus.authorize(authorize);
 primus.on("connection", function connection(spark) {
   gunPeers.push(spark);
   console.log("1.connection : SUCCESS : ", spark.id);
-  var SUCCESS = { type: "authenticated", payload: "success" };
+  const SUCCESS = { type: "authenticated", payload: "success" };
   spark.write(SUCCESS);
 
   spark.on("data", function(msg) {
@@ -154,4 +138,3 @@ primus.on("connection", function connection(spark) {
 
   return;
 });
-module.exports = server;
