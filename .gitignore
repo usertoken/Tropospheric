@@ -1,6 +1,4 @@
-**/data*
 **/node_modules
-data*
 node_modules
 npm*log
 yarn*log
