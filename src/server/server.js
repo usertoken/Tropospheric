@@ -5,19 +5,19 @@ var path = require("path");
 var favicon = require("serve-favicon");
 var Gun = require("gun");
 var app = express();
-//var levelup = require("levelup");
-//var leveldown = require("leveldown");
-//var levelHyper = require("level-hyper");
+var levelup = require("levelup");
+var leveldown = require("leveldown");
+var levelHyper = require("level-hyper");
 var Primus = require("primus");
-//var gunlevel = require("./vendors/gun-level");
+var gunlevel = require("./vendors/gun-level");
 
 require("dotenv").config();
 Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-//var levelDB = levelHyper("data/memory02-ut-data");
-//gunlevel();
+var levelDB = levelHyper("data/troposheric-ut-data");
+gunlevel();
 
 // levelDB.on('ready', function () {
 //   var name = String(Date.now())

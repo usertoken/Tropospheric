@@ -1,7 +1,7 @@
 {
   "name": "troposheric",
   "version": "0.0.1",
-  "description": "usertoken data connector",
+  "description": "Data-mining Cloud Worker for UserToken.com",
   "keywords": [
     "firebase",
     "memory02",

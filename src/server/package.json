@@ -1,21 +1,21 @@
 {
-  "name": "memory02.usertoken.com",
-  "version": "0.0.4",
+  "name": "troposheric",
+  "version": "0.0.1",
   "description": "usertoken data connector",
   "keywords": [
     "firebase",
-    "memory02",
+    "troposheric",
     "primus",
     "token-memory"
   ],
   "license": "MIT",
   "author": "Alex Davis <alex@alex2006hw.com>",
-  "main": "cluster.js",
+  "main": "server.js",
   "repository": {},
   "scripts": {
     "global": "node server-express.js",
     "local": "node server-primus.js",
-    "start": "node cluster.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
