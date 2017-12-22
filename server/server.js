@@ -43,7 +43,7 @@ app.use("*", function (req, res) {
 });
 var server = app.listen(port);
 
-console.log("Server started on port " + port + " peers : ", peerMemories);
+// console.log("Server started on port " + port + " peers : ", peerMemories);
 
 // var gun = Gun({
 //   level: levelDB,
