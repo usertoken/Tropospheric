@@ -16,7 +16,7 @@ Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-var levelDB = levelHyper("data/troposheric-ut-data");
+var levelDB = levelHyper("data/troposheric-redhat-data");
 gunlevel();
 
 // levelDB.on('ready', function () {
@@ -32,7 +32,7 @@ gunlevel();
 // console.log('process.env : ', process.env);
 
 var s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {};
-var peerMemories = ["https://tropospheric.mybluemix.net/gun", "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
+var peerMemories = ["https://tropospheric.mybluemix.net/gun"];
 var api_require = require("./serverapi/index"),
     api = api_require.api;
 
