@@ -1,5 +1,3 @@
-import { peerMemories } from "../configs/memories";
-
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
@@ -34,7 +32,13 @@ gunlevel();
 var s3options = process.env.s3options
   ? JSON.parse(JSON.stringify(process.env.s3options))
   : {};
-
+const peerMemories = [
+  "https://tropospheric.mybluemix.net/gun",
+  "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun",
+  "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun",
+  "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun",
+  "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"
+];
 var api_require = require("./serverapi/index"),
   api = api_require.api;
 
@@ -59,7 +63,6 @@ console.log(
   "[" + VERSION + "]",
   "Server started on port " + port + " with memory"
 );
-var gunPeers = peerMemories;
 // var gun = Gun({
 //   web: server,
 //   s3: s3options,
@@ -71,7 +74,7 @@ var gun = Gun({
   file: false,
   web: server,
   s3: s3options,
-  peers: gunPeers
+  peers: peerMemories
 });
 
 var gunClients = []; // used as a list of connected clients.

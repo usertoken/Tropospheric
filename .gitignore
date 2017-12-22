@@ -1,7 +1,8 @@
 **/node_modules
+data.*
 node_modules
 npm*log
 yarn*log
 tests
-wip01
+wip*
 .env
