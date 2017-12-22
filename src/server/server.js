@@ -31,10 +31,12 @@ const authorize = require("./authorize");
 //   db: leveldown
 // });
 
+// const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
+const gunPeers = require('./configs/memories');
 var api_require = require("./serverapi/index"),
   api = api_require.api;
 const s3options = JSON.parse(JSON.stringify(process.env.s3options));
-const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
+
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -42,7 +44,8 @@ app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 app.use("*", (req, res) => api(req, res));
 var server = app.listen(port);
 
-console.log("Server started on port " + port + " with /gun");
+
+console.log("Server started on port " + port + " peers : ", gunPeers);
 
 // var gun = Gun({
 //   level: levelDB,
