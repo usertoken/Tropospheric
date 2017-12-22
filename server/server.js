@@ -28,10 +28,12 @@ var authorize = require("./authorize");
 //   db: leveldown
 // });
 
+// const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
+var peerMemories = ["https://tropospheric.mybluemix.net/gun", "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
 var api_require = require("./serverapi/index"),
     api = api_require.api;
 var s3options = JSON.parse(JSON.stringify(process.env.s3options));
-var gunPeers = ["https://tropospheric.mybluemix.net/gun"];
+
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -41,7 +43,7 @@ app.use("*", function (req, res) {
 });
 var server = app.listen(port);
 
-console.log("Server started on port " + port + " with /gun");
+console.log("Server started on port " + port + " peers : ", peerMemories);
 
 // var gun = Gun({
 //   level: levelDB,
@@ -52,7 +54,7 @@ console.log("Server started on port " + port + " with /gun");
 var gun = Gun({
   web: server,
   s3: s3options,
-  peers: gunPeers
+  peers: peerMemories
 });
 
 var gunClients = []; // used as a list of connected clients.
