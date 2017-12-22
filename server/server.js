@@ -29,7 +29,13 @@ var authorize = require("./authorize");
 // });
 
 // const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
-var peerMemories = ["https://tropospheric.mybluemix.net/gun", "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
+var ROOT_MEMORIES = ["https://memory01.usertoken.com", "https://memory01.pointlook.com", "https://memory01.alex2006hw.com"];
+var CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
+
+var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"];
+
+var MY_MEMORY = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
+
 var api_require = require("./serverapi/index"),
     api = api_require.api;
 var s3options = JSON.parse(JSON.stringify(process.env.s3options));
@@ -53,8 +59,7 @@ var server = app.listen(port);
 // });
 var gun = Gun({
   web: server,
-  s3: s3options,
-  peers: peerMemories
+  peers: CLOUD_MEMORIES
 });
 
 var gunClients = []; // used as a list of connected clients.
