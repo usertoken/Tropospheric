@@ -24,14 +24,18 @@
     "format:package": "./node_modules/sort-package-json/index.js &",
     "format:src": "./node_modules/prettier/bin/prettier.js --write \"src/**/*{.js, .json}\" &",
     "link:data": "mkdir -p data",
-    "start": "npm run start:server;while(true);do sleep 1000;done",
-    "start:client": "cd public",
-    "start:server": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"troposheric-redhat\" -i max",
+    "start": "npm run start:server:pm2;npm run wait:sleep",
+    "start:server": "node server/server.js",
     "start:server:cluster": "node server/cluster.js",
-    "start:server:level": "./node_modules/pm2/bin/pm2 start server/server-levelhyper.js --name=\"troposheric-redhat\" -i max",
+    "start:server:gun": "node server/server-gun.js",
+    "start:server:level": "node server/server-levelhyper.js",
+    "start:server:pm2": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"troposheric-redhat\" -i max",
+    "start:server:pm2:express": "./node_modules/pm2/bin/pm2 start server/server-express.js --name=\"troposheric-redhat\" -i max",
+    "start:server:pm2:level": "./node_modules/pm2/bin/pm2 start server/server-levelhyper.js --name=\"troposheric-redhat\" -i max",
     "stop": "./node_modules/pm2/bin/pm2 stop \"troposheric-redhat\" ",
     "poststop": "./node_modules/pm2/bin/pm2 delete \"troposheric-redhat\" ",
-    "test": "cd tests;node client.js"
+    "test": "cd tests;node client.js",
+    "wait:sleep": "while(true);do sleep 1000;done"
   },
   "dependencies": {
     "babel-runtime": "6.26.0",

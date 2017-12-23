@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 
 app.use(Gun.serve);
-app.use(proxy(host + ":8080"));
+app.use(proxy(host + ":8081"));
 server.listen(port);
 
 console.log("Server started on port " + port + " with /gun");

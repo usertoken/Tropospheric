@@ -18,7 +18,7 @@ var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.op
 var CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 var PEER_MEMORIES = CLOUD_MEMORIES;
 
-var DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
+var DATA_FILE = "data/data-redhat-tropospheric-one-usertoken-file";
 
 var api_require = require("./serverapi/index"),
     api = api_require.api;
@@ -33,14 +33,12 @@ app.use("*", function (req, res) {
 });
 var server = app.listen(port);
 
-// console.log("Server started on port " + port + " peers : ", peerMemories);
-
 var gun = Gun({
-  web: server,
-  file: DATA_FILE,
-  s3: s3options,
-  peers: CLOUD_MEMORIES
+  peers: CLOUD_MEMORIES,
+  file: DATA_FILE
 });
+
+// console.log("Server started on port " + port + " peers : ", peerMemories);
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
@@ -66,6 +64,7 @@ primus.authorize(authorize);
 //
 // `connection` is only triggered if the authorization succeeded.
 //
+// const Main = () =>
 primus.on("connection", function connection(spark) {
   gunPeers.push(spark);
   console.log("1.connection : SUCCESS : ", spark.id);
@@ -115,6 +114,5 @@ primus.on("connection", function connection(spark) {
   spark.on("error", function (error) {
     console.log("WebSocket Error:", error);
   });
-
   return;
 });

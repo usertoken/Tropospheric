@@ -31,9 +31,9 @@ const CHILD_MEMORIES = [
 const CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 const PEER_MEMORIES = CLOUD_MEMORIES;
 
-const DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
+const DATA_FILE = "data/data-redhat-tropospheric-one-usertoken-file";
 
-var api_require = require("./serverapi/index"),
+const api_require = require("./serverapi/index"),
   api = api_require.api;
 const s3options = JSON.parse(JSON.stringify(process.env.s3options));
 
@@ -44,14 +44,12 @@ app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
 app.use("*", (req, res) => api(req, res));
 var server = app.listen(port);
 
-// console.log("Server started on port " + port + " peers : ", peerMemories);
-
-var gun = Gun({
-  web: server,
-  file: DATA_FILE,
-  s3: s3options,
-  peers: CLOUD_MEMORIES
+const gun = Gun({
+  peers: CLOUD_MEMORIES,
+  file: DATA_FILE
 });
+
+// console.log("Server started on port " + port + " peers : ", peerMemories);
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
@@ -77,6 +75,7 @@ primus.authorize(authorize);
 //
 // `connection` is only triggered if the authorization succeeded.
 //
+// const Main = () =>
 primus.on("connection", function connection(spark) {
   gunPeers.push(spark);
   console.log("1.connection : SUCCESS : ", spark.id);
@@ -130,6 +129,5 @@ primus.on("connection", function connection(spark) {
   spark.on("error", function(error) {
     console.log("WebSocket Error:", error);
   });
-
   return;
 });

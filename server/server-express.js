@@ -8,33 +8,30 @@ var Gun = require("gun");
 require("./vendors/gun-level");
 
 var app = express();
-var levelup = require("levelup");
-var leveldown = require("leveldown");
+// const levelup = require("levelup");
+// const leveldown = require("leveldown");
 
-var levelDB = levelup("data/keys-data", {
-  db: leveldown
-});
+// const levelDB = levelup("data/keys-data", {
+//   db: leveldown
+// });
 
-var _require = require("./serverapi/index"),
-    api = _require.api;
-
-var s3Options = require("./configs/s3");
+var API = require("./serverapi/index");
+var api = API.api;
+// const s3Options = require("./configs/s3");
 var gunPeers = [];
 //const gunPeers = ['https://ut.usertoken.com/gun'];
 app.use(Gun.serve);
-app.use(express.static(__dirname));
-app.use(favicon(path.join(__dirname, "public/images", "favicon.ico")));
+app.use(express.static(__dirname + "../public"));
+app.use(favicon(path.join(__dirname, "../public/images", "favicon.ico")));
 
 app.use("*", function (req, res) {
   return api(req, res);
 });
 var server = app.listen(port);
+var CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 Gun({
-  level: levelDB,
-  file: false,
   web: server,
-  s3: s3Options,
-  peers: gunPeers
+  peers: CLOUD_MEMORIES
 });
 
 console.log("Server started on port " + port + " with /gun");

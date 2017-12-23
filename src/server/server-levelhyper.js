@@ -14,7 +14,7 @@ Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-const DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
+const DATA_FILE = "data/data-redhat-tropospheric-one-usertoken-level";
 
 var levelDB = levelHyper(DATA_FILE);
 gunlevel();
@@ -76,9 +76,8 @@ console.log(
   "Server started on port " + port + " with memory"
 );
 var gun = Gun({
-  web: server,
-  file: false,
   s3: s3options,
+  file: false,
   peers: CLOUD_MEMORIES
 });
 
@@ -101,9 +100,9 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-// var primusOptions = { iknowclusterwillbreakconnections: true };
-// var primus = new Primus(server, primusOptions);
-var primus = new Primus(server);
+var primusOptions = { iknowclusterwillbreakconnections: true };
+var primus = new Primus(server, primusOptions);
+// var primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
 //
@@ -167,7 +166,6 @@ primus.on("connection", function connection(spark) {
   spark.on("error", function(error) {
     console.log("WebSocket Error:", error);
   });
-
   return;
 });
 module.exports = server;
