@@ -61,18 +61,12 @@ var server = app.listen(port);
 
 console.log("[" + VERSION + "]", "Server started on port " + port + " with memory");
 var gun = Gun({
+  level: levelDB,
   s3: s3options,
   file: false,
-  peers: CLOUD_MEMORIES
+  web: server,
+  peer: CLOUD_MEMORIES
 });
-
-// var gun = Gun({
-//   level: levelDB,
-//   file: false,
-//   web: server,
-//   s3: s3options,
-//   peers: peerMemories
-// });
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
@@ -85,9 +79,9 @@ gun.on("out", { get: { "#": { "*": "" } } });
 //   this.to.next(msg);
 // });
 
-var primusOptions = { iknowclusterwillbreakconnections: true };
-var primus = new Primus(server, primusOptions);
-// var primus = new Primus(server);
+// var primusOptions = { iknowclusterwillbreakconnections: true };
+// var primus = new Primus(server, primusOptions);
+var primus = new Primus(server);
 // save current in memory primus.js for frontend access
 primus.save(__dirname + "/primus.js");
 //

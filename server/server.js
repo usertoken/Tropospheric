@@ -33,12 +33,19 @@ app.use("*", function (req, res) {
 });
 var server = app.listen(port);
 
-var gun = Gun({
-  peers: CLOUD_MEMORIES,
-  file: DATA_FILE
-});
-
 // console.log("Server started on port " + port + " peers : ", peerMemories);
+// const gun = Gun({
+//   s3: s3options,
+//   file: DATA_FILE,
+//   web: server,
+//   peers: CLOUD_MEMORIES
+// });
+var gun = Gun({
+  s3: s3options,
+  file: DATA_FILE,
+  web: server,
+  peers: CLOUD_MEMORIES
+});
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
