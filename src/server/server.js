@@ -9,29 +9,11 @@ const path = require("path");
 const favicon = require("serve-favicon");
 const Gun = require("gun");
 const app = express();
-// const levelup = require("levelup");
-// const leveldown = require("leveldown");
-// const levelHyper = require("level-hyper");
 const Primus = require("primus");
 require("dotenv").config();
 
 const authorize = require("./authorize");
 
-// require("./vendors/gun-level");
-// const levelDB = levelHyper("data/troposheric-data");
-
-// levelDB.on('ready', function () {
-//   var name = String(Date.now())
-//   levelDB.db.liveBackup(name, function (err) {
-//     if (!err) console.log('backup to %s was successful', name)
-//   })
-// });
-
-// const levelDB = levelup("data/www-db-data", {
-//   db: leveldown
-// });
-
-// const gunPeers = ["https://tropospheric.mybluemix.net/gun"];
 const ROOT_MEMORIES = [
   "https://memory01.usertoken.com",
   "https://memory01.pointlook.com",
@@ -61,14 +43,10 @@ var server = app.listen(port);
 
 // console.log("Server started on port " + port + " peers : ", peerMemories);
 
-// var gun = Gun({
-//   level: levelDB,
-//   file: false,
-//   web: server,
-//   s3: s3Options
-// });
 var gun = Gun({
   web: server,
+  file: false,
+  s3: s3options,
   peers: CLOUD_MEMORIES
 });
 

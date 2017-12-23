@@ -16,7 +16,7 @@ Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-var levelDB = levelHyper("data/troposheric-redhat-data");
+var levelDB = levelHyper("data-tropospheric-bluemix");
 gunlevel();
 
 // levelDB.on('ready', function () {
@@ -32,7 +32,12 @@ gunlevel();
 // console.log('process.env : ', process.env);
 
 var s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {};
-var peerMemories = ["https://tropospheric.mybluemix.net/gun"];
+
+var CLOUD_MEMORIES = ["https://memory01.usertoken.com", "https://memory01.pointlook.com", "https://memory01.alex2006hw.com"];
+var MY_MEMORY = "https://tropospheric.mybluemix.net/gun";
+
+var CHILD_MEMORIES = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
+
 var api_require = require("./serverapi/index"),
     api = api_require.api;
 
@@ -51,19 +56,19 @@ var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 var server = app.listen(port);
 
 console.log("[" + VERSION + "]", "Server started on port " + port + " with memory");
-// var gun = Gun({
-//   web: server,
-//   s3: s3options,
-//   peers: gunPeers
-// });
-
 var gun = Gun({
-  level: levelDB,
-  file: false,
   web: server,
   s3: s3options,
-  peers: peerMemories
+  peers: CLOUD_MEMORIES
 });
+
+// var gun = Gun({
+//   level: levelDB,
+//   file: false,
+//   web: server,
+//   s3: s3options,
+//   peers: peerMemories
+// });
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
