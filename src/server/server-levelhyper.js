@@ -14,7 +14,7 @@ Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-var levelDB = levelHyper("data-tropospheric-bluemix");
+var levelDB = levelHyper("data-redhat-alex2006hw-com");
 gunlevel();
 
 // levelDB.on('ready', function () {
@@ -33,15 +33,21 @@ var s3options = process.env.s3options
   ? JSON.parse(JSON.stringify(process.env.s3options))
   : {};
 
-const CLOUD_MEMORIES = [
+const ROOT_MEMORIES = [
   "https://memory01.usertoken.com",
   "https://memory01.pointlook.com",
   "https://memory01.alex2006hw.com"
 ];
-const MY_MEMORY = "https://tropospheric.mybluemix.net/gun";
-
-const CHILD_MEMORIES =
+const MY_MEMORY =
   "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
+
+const CHILD_MEMORIES = [
+  "https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun",
+  "https://memory02-memory02-ut.193b.starter-ca-central-1.openshiftapps.com/gun",
+  "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun"
+];
+const CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
+const PEER_MEMORIES = CLOUD_MEMORIES;
 
 var api_require = require("./serverapi/index"),
   api = api_require.api;
@@ -69,6 +75,7 @@ console.log(
 );
 var gun = Gun({
   web: server,
+  file: false,
   s3: s3options,
   peers: CLOUD_MEMORIES
 });
