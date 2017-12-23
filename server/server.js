@@ -18,7 +18,7 @@ var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.op
 
 var MY_MEMORY = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
 
-var DATA_FILE = "data-tropospheric-redhat";
+var DATA_FILE = "data-redhat-tropospheric";
 
 var api_require = require("./serverapi/index"),
     api = api_require.api;

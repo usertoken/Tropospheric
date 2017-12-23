@@ -30,7 +30,7 @@ const CHILD_MEMORIES = [
 const MY_MEMORY =
   "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
 
-const DATA_FILE = "data-tropospheric-redhat";
+const DATA_FILE = "data-redhat-tropospheric";
 
 var api_require = require("./serverapi/index"),
   api = api_require.api;
