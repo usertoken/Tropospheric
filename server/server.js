@@ -18,6 +18,8 @@ var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.op
 
 var MY_MEMORY = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
 
+var DATA_FILE = "data-tropospheric-redhat";
+
 var api_require = require("./serverapi/index"),
     api = api_require.api;
 var s3options = JSON.parse(JSON.stringify(process.env.s3options));
@@ -35,7 +37,7 @@ var server = app.listen(port);
 
 var gun = Gun({
   web: server,
-  file: false,
+  file: DATA_FILE,
   s3: s3options,
   peers: CLOUD_MEMORIES
 });
