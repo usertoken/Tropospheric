@@ -31,8 +31,7 @@ const CHILD_MEMORIES = [
 const CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 const PEER_MEMORIES = CLOUD_MEMORIES;
 
-var DATA_FILE =
-  "data-redhat-tropospheric-one-usertoken-" + new Date().toISOString();
+const DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
 
 var api_require = require("./serverapi/index"),
   api = api_require.api;

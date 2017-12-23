@@ -18,7 +18,7 @@ var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.op
 var CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 var PEER_MEMORIES = CLOUD_MEMORIES;
 
-var DATA_FILE = "data-redhat-tropospheric-one-usertoken-" + new Date().toISOString();
+var DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
 
 var api_require = require("./serverapi/index"),
     api = api_require.api;

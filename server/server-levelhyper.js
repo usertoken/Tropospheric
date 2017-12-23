@@ -16,7 +16,9 @@ Object.assign = require("object-assign");
 
 var authorize = require("./authorize");
 
-var levelDB = levelHyper("data-redhat-alex2006hw-com");
+var DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
+
+var levelDB = levelHyper(DATA_FILE);
 gunlevel();
 
 // levelDB.on('ready', function () {
