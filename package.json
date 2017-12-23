@@ -24,7 +24,7 @@
     "format:package": "./node_modules/sort-package-json/index.js &",
     "format:src": "./node_modules/prettier/bin/prettier.js --write \"src/**/*{.js, .json}\" &",
     "link:data": "mkdir -p data",
-    "start": "npm run start:server:level",
+    "start": "npm run start:server:cluster",
     "start:server": "node server/server.js",
     "start:server:cluster": "node server/cluster.js",
     "start:server:gun": "node server/server-gun.js",
