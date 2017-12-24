@@ -11,19 +11,14 @@ require("dotenv").config();
 
 var authorize = require("./authorize");
 
-var ROOT_MEMORIES = ["https://memory01.usertoken.com", "https://memory01.pointlook.com", "https://memory01.alex2006hw.com"];
-var MY_MEMORY = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
+var _require = require("./serverapi/index"),
+    api = _require.api;
 
-var CHILD_MEMORIES = ["https://memory02-memory02-pl.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-ut.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memory02-memory02-alex.193b.starter-ca-central-1.openshiftapps.com/gun", "https://memtwo-ut-memory02.193b.starter-ca-central-1.openshiftapps.com/"];
-var CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
-var PEER_MEMORIES = CLOUD_MEMORIES;
+var _require2 = require("../configs/memories"),
+    CLOUD_MEMORIES = _require2.CLOUD_MEMORIES,
+    DATA_FILE = _require2.DATA_FILE;
 
-var DATA_FILE = "data/data-redhat-tropospheric-one-usertoken-file";
-
-var api_require = require("./serverapi/index"),
-    api = api_require.api;
 var s3options = JSON.parse(JSON.stringify(process.env.s3options));
-
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -42,7 +37,7 @@ var server = app.listen(port);
 // });
 var gun = Gun({
   s3: s3options,
-  file: DATA_FILE,
+  file: DATA_FILE + "-file",
   web: server,
   peers: CLOUD_MEMORIES
 });

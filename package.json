@@ -24,18 +24,14 @@
     "format:package": "./node_modules/sort-package-json/index.js &",
     "format:src": "./node_modules/prettier/bin/prettier.js --write \"src/**/*{.js, .json}\" &",
     "link:data": "mkdir -p data",
-    "start": "npm run start:server:cluster",
-    "start:server": "node server/server.js",
-    "start:server:cluster": "node server/cluster.js",
-    "start:server:gun": "node server/server-gun.js",
-    "start:server:level": "node server/server-levelhyper.js",
-    "start:server:pm2": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"tropospheric-redhat\" -i max;npm run wait:sleep",
-    "start:server:pm2:express": "./node_modules/pm2/bin/pm2 start server/server-express.js --name=\"tropospheric-redhat\" -i max;npm run wait:sleep",
-    "start:server:pm2:level": "./node_modules/pm2/bin/pm2 start server/server-levelhyper.js --name=\"tropospheric-redhat\" -i 1;npm run wait:sleep",
+    "start": "npm run start:server:gateway:1",
+    "start:server:data": "node server/server-levelhyper.js",
+    "start:server:gateway:1": "node server/cluster.js",
     "stop": "./node_modules/pm2/bin/pm2 stop \"tropospheric-redhat\" ",
     "poststop": "./node_modules/pm2/bin/pm2 delete \"tropospheric-redhat\" ",
     "test": "cd tests;node client.js",
-    "wait:sleep": "while(true);do sleep 1000;done"
+    "wait:sleep": "while(true);do sleep 1000;done",
+    "wip:start:server:gateway:2": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"tropospheric-redhat\" -i max;npm run wait:sleep"
   },
   "dependencies": {
     "babel-runtime": "6.26.0",
