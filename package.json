@@ -4,9 +4,9 @@
   "description": "Data-mining Cloud Worker for UserToken.com",
   "keywords": [
     "memory02",
-    "primus",
     "redhat",
-    "token-memory"
+    "token-memory",
+    "tropospheric"
   ],
   "license": "MIT",
   "author": "Alex Davis <alex@alex2006hw.com>",
@@ -25,13 +25,13 @@
     "format:src": "./node_modules/prettier/bin/prettier.js --write \"src/**/*{.js, .json}\" &",
     "link:data": "mkdir -p data",
     "start": "npm run start:server:gateway:1",
-    "start:server:data": "node server/server-levelhyper.js",
-    "start:server:gateway:1": "node server/cluster.js",
+    "start:server:gateway:1": "node server/server-levelhyper.js",
+    "start:server:gateway:2": "node server/server.js",
     "stop": "./node_modules/pm2/bin/pm2 stop \"tropospheric-redhat\" ",
     "poststop": "./node_modules/pm2/bin/pm2 delete \"tropospheric-redhat\" ",
     "test": "cd tests;node client.js",
     "wait:sleep": "while(true);do sleep 1000;done",
-    "wip:start:server:gateway:2": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"tropospheric-redhat\" -i max;npm run wait:sleep"
+    "wip:start:server:gateway:pm2": "./node_modules/pm2/bin/pm2 start server/server.js --name=\"tropospheric-redhat\" -i max;npm run wait:sleep"
   },
   "dependencies": {
     "babel-runtime": "6.26.0",

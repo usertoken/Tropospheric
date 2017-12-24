@@ -1,2 +1,6 @@
-cp ../aaa/manifest.yml .
+git checkout manifest.yml
+git checkout public
+git checkout docker-build
+
+
 

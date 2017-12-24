@@ -15,4 +15,4 @@ exports.CHILD_MEMORIES = [
 exports.CLOUD_MEMORIES = "https://tropospheric.mybluemix.net/gun";
 /////
 
-exports.DATA_FILE = "data/data-redhat-tropospheric-one-usertoken";
+exports.DATA_FILE = "data/data-redhat-tropospheric-memtwo-usertoken";
