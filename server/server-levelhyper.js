@@ -1,24 +1,31 @@
 "use strict";
 
+require("dotenv").config();
+Object.assign = require("object-assign");
+
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
-var Gun = require("gun");
+// var Gun = require("gun");
 var app = express();
 var levelup = require("levelup");
 var leveldown = require("leveldown");
 var levelHyper = require("level-hyper");
 var Primus = require("primus");
+var Gun = require("gun");
+// const { Gun, gun } = require("./api/gundb");
 var gunlevel = require("./vendors/gun-level");
 
-require("dotenv").config();
-Object.assign = require("object-assign");
+var _require = require("../configs/memories"),
+    ROOT_MEMORIES = _require.ROOT_MEMORIES;
+
+var _require2 = require("../configs/localconfigs"),
+    DATA_FILE = _require2.DATA_FILE;
 
 var authorize = require("./authorize");
 
-var _require = require("../configs/memories"),
-    CLOUD_MEMORIES = _require.CLOUD_MEMORIES,
-    DATA_FILE = _require.DATA_FILE;
+var _require3 = require("./serverapi/index"),
+    api = _require3.api;
 
 var levelDB = levelHyper(DATA_FILE + "-level");
 gunlevel();
@@ -37,9 +44,6 @@ gunlevel();
 
 var s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {};
 
-var api_require = require("./serverapi/index"),
-    api = api_require.api;
-
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -54,14 +58,21 @@ var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
 var server = app.listen(port);
 
-console.log("[" + VERSION + "]", "Server started on port " + port + " with memory");
-var gun = Gun({
+// console.log(
+//   "[" + VERSION + "]",
+//   "Server started on port " + port + " with memory"
+// );
+var gunOptions = {
   level: levelDB,
   s3: s3options,
   file: false,
   web: server,
-  peer: CLOUD_MEMORIES
-});
+  peer: ROOT_MEMORIES
+};
+
+// console.log("1.server-levelhyper options : ", gunOptions);
+
+var gun = Gun(gunOptions);
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });

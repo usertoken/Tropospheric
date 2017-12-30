@@ -4,21 +4,27 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || pro
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
-var Gun = require("gun");
+// const Gun = require("gun");
 var app = express();
 var Primus = require("primus");
 require("dotenv").config();
 
+var _require = require("./api/gundb"),
+    Gun = _require.Gun,
+    gun = _require.gun;
+
 var authorize = require("./authorize");
 
-var _require = require("./serverapi/index"),
-    api = _require.api;
+var _require2 = require("./serverapi/index"),
+    api = _require2.api;
 
-var _require2 = require("../configs/memories"),
-    CLOUD_MEMORIES = _require2.CLOUD_MEMORIES,
-    DATA_FILE = _require2.DATA_FILE;
+var _require3 = require("../configs/memories"),
+    ROOT_MEMORIES = _require3.ROOT_MEMORIES,
+    DATA_FILE = _require3.DATA_FILE;
 
-var s3options = JSON.parse(JSON.stringify(process.env.s3options));
+// const s3options = JSON.parse(JSON.stringify(process.env.s3options));
+
+
 app.use(Gun.serve);
 app.use(express.static(__dirname + "/../public"));
 app.use(favicon(path.join(__dirname, "/../public/images", "favicon.ico")));
@@ -33,14 +39,18 @@ var server = app.listen(port);
 //   s3: s3options,
 //   file: DATA_FILE,
 //   web: server,
-//   peers: CLOUD_MEMORIES
+//   peers: ROOT_MEMORIES
 // });
-var gun = Gun({
-  s3: s3options,
-  file: DATA_FILE + "-file",
-  web: server,
-  peers: CLOUD_MEMORIES
-});
+// const gunOptions = {
+//   s3: s3options,
+//   file: DATA_FILE + "-file",
+//   web: server,
+//   peers: ROOT_MEMORIES
+// };
+
+console.log("1.server options : ", gunOptions);
+
+// const gun = Gun(gunOptions);
 
 var gunClients = []; // used as a list of connected clients.
 gun.on("out", { get: { "#": { "*": "" } } });
