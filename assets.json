@@ -1,32 +1,32 @@
 {
   "privacy": {
-    "js": "/assets/privacy.b78dee28.chunk.js"
+    "js": "/assets/privacy.0215518c.chunk.js"
   },
   "about": {
-    "js": "/assets/about.d55c0671.chunk.js"
+    "js": "/assets/about.dbae0075.chunk.js"
   },
   "register": {
-    "js": "/assets/register.78c49437.chunk.js"
+    "js": "/assets/register.cadadd8a.chunk.js"
   },
   "not-found": {
-    "js": "/assets/not-found.f4a5e3ce.chunk.js"
+    "js": "/assets/not-found.af71ec27.chunk.js"
   },
   "login": {
-    "js": "/assets/login.f96455bb.chunk.js"
+    "js": "/assets/login.845b3486.chunk.js"
   },
   "home": {
-    "js": "/assets/home.9b1814fb.chunk.js"
+    "js": "/assets/home.ae1b1702.chunk.js"
   },
   "contact": {
-    "js": "/assets/contact.a8c97375.chunk.js"
+    "js": "/assets/contact.5fb6983d.chunk.js"
   },
   "admin": {
-    "js": "/assets/admin.d412e95c.chunk.js"
+    "js": "/assets/admin.586c4631.chunk.js"
   },
   "client": {
-    "js": "/assets/client.0f3ed36c.js"
+    "js": "/assets/client.ded4e5b5.js"
   },
   "vendor": {
-    "js": "/assets/vendor.aacdcdbf.js"
+    "js": "/assets/vendor.8de13771.js"
   }
 }

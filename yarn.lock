@@ -5336,8 +5336,8 @@ log-update@^1.0.2:
     cli-cursor "^1.0.2"
 
 loglevelnext@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/loglevelnext/-/loglevelnext-1.0.2.tgz#eb81a7ac45ca5749ee0e40d75c5d3d2f7cb7705d"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/loglevelnext/-/loglevelnext-1.0.1.tgz#8b17b5a43395338a96c67911a962c44af466d1c8"
 
 longest-streak@^2.0.1:
   version "2.0.2"
@@ -8849,8 +8849,8 @@ webpack-hot-middleware@2.21.0:
     strip-ansi "^3.0.0"
 
 webpack-log@^1.0.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/webpack-log/-/webpack-log-1.1.1.tgz#a0c7beb385245da7b2172afe46c02cf3a471ef31"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/webpack-log/-/webpack-log-1.1.0.tgz#fc17ce3aba349130d09464ee31d04686e8023f6a"
   dependencies:
     chalk "^2.1.0"
     log-symbols "^2.1.0"

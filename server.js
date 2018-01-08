@@ -236,8 +236,8 @@ module.exports = require("gun/gun");
     // Only activated in browser context
     if (false) {
       var removeCss = function() {};
-      module.hot.accept("!!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/tokenworker-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/tokenworker-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
-        content = require("!!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/tokenworker-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/tokenworker-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
+      module.hot.accept("!!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/memory02-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/memory02-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
+        content = require("!!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/memory02-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZWFmYTViZmE1NTQ2MzM2ZjVlZTczMGE0/memory02-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
 
         if (typeof content === 'string') {
           content = [[module.id, content, '']];
