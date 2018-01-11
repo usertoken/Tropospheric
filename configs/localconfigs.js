@@ -12,9 +12,7 @@ var DEVICE_ID = exports.DEVICE_ID = HOSTNAME;
 var GRAPHQL = exports.GRAPHQL = 'https://' + HOSTNAME + '/graphql';
 var DEBUG = exports.DEBUG = false;
 var DEBUG_LOG_URL = exports.DEBUG_LOG_URL = 'https://logentries.com/app/a092e388';
-var s3options = exports.s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {};
 /////
-
 //
 //const MY_MEMORY =
 //  !window ||

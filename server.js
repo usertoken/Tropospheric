@@ -548,7 +548,6 @@ module.exports = require("isomorphic-style-loader/lib/withStyles");
 /* unused harmony export GRAPHQL */
 /* unused harmony export DEBUG */
 /* unused harmony export DEBUG_LOG_URL */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return s3options; });
 /////
 var HOSTNAME = "tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com";
 var DATA_FILE = "data-" + HOSTNAME;
@@ -556,8 +555,7 @@ var DEVICE_ID = HOSTNAME; /////
 
 var GRAPHQL = "https://" + HOSTNAME + "/graphql";
 var DEBUG = false;
-var DEBUG_LOG_URL = "https://logentries.com/app/a092e388";
-var s3options = process.env.s3options ? JSON.parse(JSON.stringify(process.env.s3options)) : {}; /////
+var DEBUG_LOG_URL = "https://logentries.com/app/a092e388"; /////
 //
 //const MY_MEMORY =
 //  !window ||
@@ -738,7 +736,6 @@ var app = __WEBPACK_IMPORTED_MODULE_1_express___default()(); //
 var levelDB = __WEBPACK_IMPORTED_MODULE_17_level_hyper___default()(__WEBPACK_IMPORTED_MODULE_19__configs_localconfigs__["a" /* DATA_FILE */]);
 var gunOptions = {
   level: levelDB,
-  s3: __WEBPACK_IMPORTED_MODULE_19__configs_localconfigs__["d" /* s3options */],
   web: app,
   file: false,
   peer: __WEBPACK_IMPORTED_MODULE_20__configs_serverMemories__["ROOT_MEMORIES"]

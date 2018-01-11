@@ -7,9 +7,15 @@
 //  "https://tropospheric.mybluemix.net/gun",
 //  "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun"
 //];
-var MY_MEMORY = !window || !window.location || !window.location.protocol || !window.location.host ? 'https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun' : window.location.protocol + '//' + window.location.host + '/gun';
+//const MY_MEMORY =
+//  !window ||
+//  !window.location ||
+//  !window.location.protocol ||
+//  !window.location.host
+//    ? "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun"
+//    : window.location.protocol + "//" + window.location.host + "/gun";
 
-exports.CLOUD_MEMORIES = MY_MEMORY;
+exports.CLOUD_MEMORIES = 'https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun';
 
 //exports.DEV_CLOUD_MEMORIES = [
 //  "https://dev-ut-redhat.193b.starter-ca-central-1.openshiftapps.com/gun",
