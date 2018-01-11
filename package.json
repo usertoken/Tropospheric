@@ -52,6 +52,7 @@
   },
   "scripts": {
     "help": "echo ===> concurrently \"HYPER_PORT=3030 node jobWorker.js\" \"HYPER_PORT=3030 HYPER_HOST=localhost node server.js\" ",
+    "dev": "concurrently \"nodemon jobWorker.js\" \"nodemon server.js\" ",
     "start": "concurrently \"node jobWorker.js\" \"node server.js\" "
   }
 }

@@ -757,17 +757,17 @@ var appState = gunLocal.get(__WEBPACK_IMPORTED_MODULE_19__configs_localconfigs__
 var cloudState = gun.get(__WEBPACK_IMPORTED_MODULE_19__configs_localconfigs__["b" /* DEVICE_ID */]);
 
 var getAppState = function getAppState(key) {
-  console.log('1.server getAppState ', key);
+  //  console.log('1.server getAppState ', key)
   appState.get(key).val(function (v) {
-    console.log('2.server getAppState ', key, v);
+    //    console.log('2.server getAppState ', key, v)
     return v;
   });
 };
 
 var getCloudState = function getCloudState(key) {
-  console.log('1.server getCloudState ', key);
+  //  console.log('1.server getCloudState ', key)
   cloudState.get(key).val(function (v) {
-    console.log('2.server getCloudState ', key, v);
+    //    console.log('2.server getCloudState ', key, v)
     return v;
   });
 }; //
@@ -836,10 +836,20 @@ app.get('/login/facebook/return', __WEBPACK_IMPORTED_MODULE_28__passport__["a" /
 // connects hypernova
 // --------------------------------------------------------
 // get current hypernova
+//console.log('1.server ID : ', DEVICE_ID, 'memories : ', ROOT_MEMORIES);
 
 var HYPER_PORT = getCloudState('HYPER_PORT') || process.env.HYPER_PORT || 3030;
 var HYPER_HOST = getCloudState('HYPER_HOST') || process.env.HYPER_HOST || 'localhost';
 var HYPER_URL = getCloudState('HYPER_URL') || "http://".concat(HYPER_HOST, ":").concat(HYPER_PORT, "/batch");
+cloudState.get('HYPER_PORT').on(function (port) {
+  return console.log('1.server hypernova ==> port : ', port);
+});
+cloudState.get('HYPER_HOST').on(function (host) {
+  return console.log('2.server hypernova ==> host : ', host);
+});
+cloudState.get('HYPER_URL').on(function (url) {
+  return console.log('2.server hypernova ==> url : ', url);
+});
 var renderer = new __WEBPACK_IMPORTED_MODULE_21_hypernova_client___default.a({
   url: HYPER_URL,
   plugins: [__WEBPACK_IMPORTED_MODULE_22__vendors_devModePlugin___default.a]
