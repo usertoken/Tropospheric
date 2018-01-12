@@ -19,6 +19,7 @@
     "find-port": "^2.0.1",
     "graphql": "^0.12.3",
     "gun": "^0.9.6",
+    "gun-unset": "^1.0.1",
     "history": "4.7.2",
     "hypernova": "git+https://github.com/prod-usertoken/hypernova.git",
     "hypernova-aphrodite": "^2.1.1",
