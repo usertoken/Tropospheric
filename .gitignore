@@ -2,6 +2,7 @@
 server/primus.js
 data.*
 data-*
+database*
 node_modules
 npm*log
 yarn*log
