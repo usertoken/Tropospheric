@@ -34,6 +34,7 @@
     "normalize.css": "7.0.0",
     "passport": "0.4.0",
     "passport-facebook": "2.1.1",
+    "pm2": "^2.9.1",
     "pretty-error": "2.1.1",
     "primus": "^7.1.0",
     "prop-types": "15.6.0",
@@ -52,8 +53,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "help": "echo ===> concurrently \"HYPER_PORT=3030 node jobWorker.js\" \"HYPER_PORT=3030 HYPER_HOST=localhost node server.js\" ",
-    "dev": "concurrently \"nodemon jobWorker.js\" \"nodemon server.js\" ",
-    "start": "concurrently \"node jobWorker.js\" \"node server.js\" "
+    "start": "NODE_ENV=production pm2 start server.js --env production -i 0 --name express-server;pm2 start jobWorker.js --env production -i 0 --name worker-server;npm run sleep ",
+    "stop": "pm2 stop express-server;pm2 stop worker-server;pm2 delete express-server;pm2 delete worker-server ",
+    "sleep": "while(true);do sleep 10s;done"
   }
 }
