@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 /////
 var HOSTNAME = exports.HOSTNAME = 'tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com';
-var DATA_FILE = exports.DATA_FILE = 'data-' + HOSTNAME;
+var DATA_FILE = exports.DATA_FILE = 'data/data-' + HOSTNAME;
 var DEVICE_ID = exports.DEVICE_ID = HOSTNAME;
 
 /////

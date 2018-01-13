@@ -160,7 +160,7 @@ module.exports = {
     serverUrl: process.env.API_SERVER_URL || process.env.GRAPHQL_URL || "http://".concat(process.env.GRAPHQL_HOST || 'localhost', ":").concat(process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || process.env.GRAPHQL_PORT || 8080)
   },
   // Database
-  databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
+  databaseUrl: process.env.DATABASE_URL || 'sqlite:data/database.sqlite',
   // Web analytics
   analytics: {
     // https://analytics.google.com/
@@ -550,7 +550,7 @@ module.exports = require("isomorphic-style-loader/lib/withStyles");
 /* unused harmony export DEBUG_LOG_URL */
 /////
 var HOSTNAME = "tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com";
-var DATA_FILE = "data-" + HOSTNAME;
+var DATA_FILE = "data/data-" + HOSTNAME;
 var DEVICE_ID = HOSTNAME; /////
 
 var GRAPHQL = "https://" + HOSTNAME + "/graphql";
