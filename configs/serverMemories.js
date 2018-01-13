@@ -7,8 +7,8 @@ var SERVER_PORT = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT
 
 var SERVER_URL = process.env.API_SERVER_URL || process.env.GRAPHQL_URL || 'http://' + (process.env.GRAPHQL_HOST || 'localhost') + ':' + (process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || process.env.GRAPHQL_PORT || SERVER_PORT) + '/gun';
 
-exports.ROOT_MEMORIES = 'https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun';
-exports.MY_MEMORY = SERVER_URL;
+exports.ROOT_MEMORIES = '';
+exports.MY_MEMORY = 'https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun';
 
 //const MY_MEMORY =
 //  !window ||

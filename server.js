@@ -151,7 +151,7 @@ if (false) {
 
 module.exports = {
   // Node.js app
-  port: process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || process.argv[2] || 8080,
+  port: process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || 8080,
   // API Gateway
   api: {
     // API URL to be used in the client-side code
@@ -236,8 +236,8 @@ module.exports = require("gun/gun");
     // Only activated in browser context
     if (false) {
       var removeCss = function() {};
-      module.hot.accept("!!../../../../../../../tmp/MDY4NmVjODA2NmE4ZjMzYzYxMWUzNTk4/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/MDY4NmVjODA2NmE4ZjMzYzYxMWUzNTk4/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
-        content = require("!!../../../../../../../tmp/MDY4NmVjODA2NmE4ZjMzYzYxMWUzNTk4/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/MDY4NmVjODA2NmE4ZjMzYzYxMWUzNTk4/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
+      module.hot.accept("!!../../../../../../../tmp/ZDU5YjI3MDhhYTU1ODVkYTg3MDI0OTc4/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZDU5YjI3MDhhYTU1ODVkYTg3MDI0OTc4/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
+        content = require("!!../../../../../../../tmp/ZDU5YjI3MDhhYTU1ODVkYTg3MDI0OTc4/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/ZDU5YjI3MDhhYTU1ODVkYTg3MDI0OTc4/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
 
         if (typeof content === 'string') {
           content = [[module.id, content, '']];
@@ -814,10 +814,11 @@ app.get('/login/facebook/return', __WEBPACK_IMPORTED_MODULE_21__passport__["a" /
 // --------------------------------------------------------
 // get current hypernova
 //console.log('1.server ID : ', DEVICE_ID, 'memories : ', ROOT_MEMORIES);
-//let HYPER_PORT = getAppState('HYPER_PORT') || process.env.HYPER_PORT || 3030;
+//let HYPER_PORT = getAppState('HYPER_PORT') || process.env.HYPER_PORT || 9600;
 //let HYPER_HOST = getAppState('HYPER_HOST') || process.env.HYPER_HOST || 'localhost';
 
-var HYPER_URL = Object(__WEBPACK_IMPORTED_MODULE_13__vendors_commChannels__["c" /* getAppState */])('HYPER_URL') || 'http://localhost:3030/batch'; //var HYPER_PORT, HYPER_HOST
+var HYPER_URL = Object(__WEBPACK_IMPORTED_MODULE_13__vendors_commChannels__["c" /* getAppState */])('HYPER_URL') || 'http://localhost:9600/batch';
+console.log('1.server hypernova ==> appState HYPER_URL : ', HYPER_URL); //var HYPER_PORT, HYPER_HOST
 //var HYPER_URL
 //cloudState.get('HYPER_PORT').on(port => {
 //  console.log('1.server hypernova ==> port : ', port)
@@ -1624,8 +1625,8 @@ module.exports = require("level-hyper");
 //exports.HOSTNAME = "memory02-dev.alex2006hw.com";
 var SERVER_PORT = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || process.argv[2] || 8080;
 var SERVER_URL = process.env.API_SERVER_URL || process.env.GRAPHQL_URL || "http://".concat(process.env.GRAPHQL_HOST || 'localhost', ":").concat(process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.env.DEV_SERVICE_PORT || process.env.GRAPHQL_PORT || SERVER_PORT, "/gun");
-exports.ROOT_MEMORIES = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun";
-exports.MY_MEMORY = SERVER_URL; //const MY_MEMORY =
+exports.ROOT_MEMORIES = "";
+exports.MY_MEMORY = "https://tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com/gun"; //const MY_MEMORY =
 //  !window ||
 //  !window.location ||
 //  !window.location.protocol ||

@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var createGetComponent = _server2.default.createGetComponent;
 
 
-var HYPER_PORT = process.env.HYPER_PORT || 3030,
+var HYPER_PORT = process.env.HYPER_PORT || 9600,
     HYPER_HOST = process.env.HYPER_HOST || '0.0.0.0',
     HYPER_ENDPOINT = '/batch',
     HYPER_URL = 'http://' + HYPER_HOST + ':' + HYPER_PORT + HYPER_ENDPOINT;
