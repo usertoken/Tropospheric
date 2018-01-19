@@ -56,12 +56,11 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "server": "pm2 start server.js --env production -i 0 --name server ",
-    "worker": "pm2 start jobWorker.js --env production -i 0 --name worker ",
-    "prestart": "rimraf ~/.pm2;mkdirp data ",
-    "start": "NODE_ENV=production npm-run-all server worker ",
-    "poststart": "npm run sleep ",
-    "stop": "pm2 stop server;pm2 stop worker;pm2 delete server;pm2 delete worker ",
+    "server": "./node_modules/pm2/bin/pm2 start server.js --env production -i 1 --name server ",
+    "worker": "./node_modules/pm2/bin/pm2 start jobWorker.js --env production -i 0 --name worker ",
+    "prestart": "./node_modules/rimraf/bin.js ~/.pm2;./node_modules/mkdirp/bin/cmd.js data ",
+    "start": "NODE_ENV=production npm-run-all server worker;npm run sleep",
+    "stop": "./node_modules/pm2/bin/pm2 stop server;./node_modules/pm2/bin/pm2 stop worker;./node_modules/pm2/bin/pm2 delete server;./node_modules/pm2/bin/pm2 delete worker ",
     "sleep": "while(true);do sleep 10s;done"
   }
 }

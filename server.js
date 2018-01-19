@@ -236,8 +236,8 @@ module.exports = require("gun/gun");
     // Only activated in browser context
     if (false) {
       var removeCss = function() {};
-      module.hot.accept("!!../../../../../../../tmp/OTA0YmZiNTkwNDBlYzE1ZDQ0ZjdmMWYx/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/OTA0YmZiNTkwNDBlYzE1ZDQ0ZjdmMWYx/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
-        content = require("!!../../../../../../../tmp/OTA0YmZiNTkwNDBlYzE1ZDQ0ZjdmMWYx/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/OTA0YmZiNTkwNDBlYzE1ZDQ0ZjdmMWYx/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
+      module.hot.accept("!!../../../../../../../tmp/YWNiODc0Y2Y1ODFiMjAyODMwN2Q2MzVk/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/YWNiODc0Y2Y1ODFiMjAyODMwN2Q2MzVk/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css", function() {
+        content = require("!!../../../../../../../tmp/YWNiODc0Y2Y1ODFiMjAyODMwN2Q2MzVk/tropospheric-usertoken/root/node_modules/css-loader/index.js??ref--1-rules-2!../../../../../../../tmp/YWNiODc0Y2Y1ODFiMjAyODMwN2Q2MzVk/tropospheric-usertoken/root/node_modules/postcss-loader/lib/index.js??ref--1-rules-3!./ErrorPage.css");
 
         if (typeof content === 'string') {
           content = [[module.id, content, '']];
@@ -550,7 +550,7 @@ module.exports = require("isomorphic-style-loader/lib/withStyles");
 /* unused harmony export DEBUG_LOG_URL */
 /////
 var HOSTNAME = "tropospheric-tropospheric.193b.starter-ca-central-1.openshiftapps.com";
-var DATA_FILE = "data/data-" + HOSTNAME;
+var DATA_FILE = "data-" + HOSTNAME;
 var DEVICE_ID = HOSTNAME; /////
 
 var GRAPHQL = "https://" + HOSTNAME + "/graphql";
